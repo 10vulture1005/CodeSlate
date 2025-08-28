@@ -53,11 +53,6 @@ Y.js + Monaco Editor enable collaborative editing of code in real-time.
 
 
 
-##🚀 Deployment
-
-This project is configured for deployment on:
-- **Frontend**: Vercel
-- **Backend**: Render
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 

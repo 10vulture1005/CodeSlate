@@ -9,7 +9,7 @@ export const useSocket=()=>{
     return useContext(Socketcontext);
 }
 export const SocketProvider = (props)=>{
-    const socket  = useMemo(()=>io(import.meta.env.VITE_SOCKET_URL || "http://localhost:2000"
+    const socket  = useMemo(()=>io(import.meta.env.VITE_SOCKET_URL || "http://localhost:8080"
         ,{
             transports: ["websocket"],
             withCredentials: true

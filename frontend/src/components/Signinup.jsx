@@ -18,13 +18,13 @@ export default function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const firebaseConfig = {
-    apiKey: "AIzaSyCZO0y5fC33rx-WpNyzMBBtmwQP3iOpXu4",
-    authDomain: "codeview-ab0d6.firebaseapp.com",
-    projectId: "codeview-ab0d6",
-    storageBucket: "codeview-ab0d6.firebasestorage.app",
-    messagingSenderId: "447102249162",
-    appId: "1:447102249162:web:e76dab8d060c6b4319ac33",
-    measurementId: "G-G573D47S39",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
   };
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
@@ -92,19 +92,6 @@ export default function Login() {
       );
     }
 
-    // Here you would typically send the data to your server
-    // axios.post('http://localhost:8080/register', { username: name, email, password })
-    //   .then(response => {
-
-    //     console.log('Registration successful:', response.data);
-    //     handleLoginClick();
-    //     alert('Registration successful! You can now log in.');
-
-    //   })
-    //   .catch(error => {
-    //     console.error('There was an error registering!', error);
-    //     alert('An error occurred during registration. Please try again later.');
-    //   });
   };
   const handleSubmitSignIn = (e) => {
     e.preventDefault();
@@ -129,28 +116,6 @@ export default function Login() {
         const errorMessage = error.message;
         console.log(error);
       });
-    // axios.post(`http://localhost:8080/login`, { username:username, password:password },
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   })
-    //   .then(res => {
-
-    //     if (res.data) {
-    //       console.log('Login successful:', res.data);
-    //       alert('Login successful!');
-
-    //       // Here you can redirect the user or perform any other actions after successful login
-
-    //       navigate('./notes',{state: { username: username }});
-
-    //     } else {
-    //       alert('Login failed. Please check your credentials.');
-    //     }
-    //   })
-    //   .catch(err => console.error("There was an error logging in!", err));
-
 
   };
   return (

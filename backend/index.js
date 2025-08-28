@@ -57,7 +57,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, { 
   cors: {
     origin: [
-      "https://code-view-beta.vercel.app",  // your Vercel frontend
+      "https://code-slate-two.vercel.app/",  // your Vercel frontend
       "http://localhost:3000"              // local dev
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -68,8 +68,8 @@ const io = new Server(httpServer, {
 
 // Start the server
 httpServer.listen(PORT, () => {
-  console.log(`🚀 Express server listening on port ${PORT}`);
-  console.log(`🔌 Socket.IO server attached to Express server`);
+  console.log(`Express server listening on port ${PORT}`);
+  console.log(`Socket.IO server attached to Express server`);
 });
 
 // --- Enhanced Data Structures
@@ -79,7 +79,7 @@ const rooms = new Map();        // roomid -> Set(emails)
 const activeCalls = new Map();  // email -> { with: email, offer?: any, answer?: any }
 
 io.on('connection', (socket) => {
-  console.log(` New connection: ${socket.id}`);
+  console.log(`New connection: ${socket.id}`);
 
   // --- Handle Joining a Room
   socket.on('join-room', ({ email, roomid }) => {
@@ -278,12 +278,12 @@ io.on('connection', (socket) => {
             status: 'completed'
           });
           
-          console.log(`📊 Call history tracked for ${email} and ${otherEmail}`);
+          console.log(`Call history tracked for ${email} and ${otherEmail}`);
         } catch (error) {
           console.error('Error tracking call history:', error);
         }
         
-        console.log(`📴 Call ended by ${email}`);
+        console.log(`Call ended by ${email}`);
       }
     }
   });

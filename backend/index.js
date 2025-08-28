@@ -13,7 +13,7 @@ const app = express();
 app.use((req, res, next) => {
   const allowedOrigins = [
     process.env.FRONTEND_URL || "http://localhost:3000",
-    "https://code-view-beta.vercel.app",
+    "https://code-slate-two.vercel.app/",
     "https://*.vercel.app"
   ];
   
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-connectDB();
+// connectDB();
 
 // API Routes
 app.use('/api/users', userRoutes);

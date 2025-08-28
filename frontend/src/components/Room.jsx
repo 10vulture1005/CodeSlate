@@ -53,7 +53,7 @@ export default function Room() {
   // Handle new user joining (existing users receive this)
   const handleNewUser = useCallback(async (data) => {
     const { email } = data;
-    console.log(`👋 New user joined: ${email}`);
+    console.log(`New user joined: ${email}`);
     setRemoteEmailId(email);
     setExistingUsers((prev) => [...prev.filter((u) => u !== email), email]);
   }, []);
@@ -61,14 +61,14 @@ export default function Room() {
   // Handle existing users list (new user receives this)
   const handleExistingUsers = useCallback(async (data) => {
     const { users } = data;
-    console.log("📦 Received existing users:", users);
+    console.log("Received existing users:", users);
     setExistingUsers(users);
   }, []);
 
   // Handle incoming call
   const handleIncomingCall = useCallback(async (data) => {
     const { email: from, offer } = data;
-    console.log("📞 Incoming call from", from);
+    console.log("Incoming call from", from);
     setRemoteEmailId(from);
     setIncomingCalls((prev) => {
       if (prev.some((call) => call.email === from)) {
@@ -83,15 +83,15 @@ export default function Room() {
   const handleRenegotiationOffer = useCallback(
     async (data) => {
       const { email: from, offer } = data;
-      console.log("🔄 Re-negotiation offer from", from);
+      console.log("Re-negotiation offer from", from);
 
       if (activeCalls.includes(from)) {
         try {
           const ans = await createAnswere(offer);
-          socket.emit("renegotiation-answer", { email: from, ans });
-          console.log("✅ Re-negotiation answer sent to", from);
+                  socket.emit("renegotiation-answer", { email: from, ans });
+        console.log("Re-negotiation answer sent to", from);
         } catch (error) {
-          console.error("❌ Error handling re-negotiation:", error);
+          console.error("Error handling re-negotiation:", error);
         }
       }
     },
@@ -102,14 +102,14 @@ export default function Room() {
   const handleRenegotiationAnswer = useCallback(
     async (data) => {
       const { email: from, ans } = data;
-      console.log("🔄 Re-negotiation answer from", from);
+      console.log("Re-negotiation answer from", from);
 
       try {
         await setRemoteAnswer(ans);
         setIsNegotiating(false);
-        console.log("✅ Re-negotiation completed with", from);
+        console.log("Re-negotiation completed with", from);
       } catch (error) {
-        console.error("❌ Error handling re-negotiation answer:", error);
+        console.error("Error handling re-negotiation answer:", error);
         setIsNegotiating(false);
       }
     },
@@ -122,7 +122,7 @@ export default function Room() {
       try {
         const ans = await createAnswere(callData.offer);
         socket.emit("call-accepted", { email: callData.email, ans });
-        console.log("✅ Call accepted with", callData.email);
+        console.log("Call accepted with", callData.email);
         setActiveCalls((prev) => [...prev, callData.email]);
         setIncomingCalls((prev) =>
           prev.filter((call) => call.email !== callData.email)
@@ -130,7 +130,7 @@ export default function Room() {
         setCallStatus("in-call");
         setRemoteEmailId(callData.email);
       } catch (error) {
-        console.error("❌ Error accepting call:", error);
+        console.error("Error accepting call:", error);
       }
     },
     [createAnswere, socket]
@@ -146,7 +146,7 @@ export default function Room() {
       if (incomingCalls.length <= 1) {
         setCallStatus("idle");
       }
-      console.log("❌ Call rejected from", callData.email);
+      console.log("Call rejected from", callData.email);
     },
     [socket, incomingCalls.length]
   );
@@ -155,7 +155,7 @@ export default function Room() {
   const callUser = useCallback(
     async (targetEmail) => {
       try {
-        console.log(`📞 Calling ${targetEmail}...`);
+        console.log(`Calling ${targetEmail}...`);
         const offer = await createOffer();
         socket.emit("calling-user", { email: targetEmail, offer });
         setOutgoingCalls((prev) => [
@@ -165,7 +165,7 @@ export default function Room() {
         setRemoteEmailId(targetEmail);
         setCallStatus("calling");
       } catch (error) {
-        console.error("❌ Error calling user:", error);
+        console.error("Error calling user:", error);
       }
     },
     [createOffer, socket]
@@ -175,7 +175,7 @@ export default function Room() {
   const handleCallAccepted = useCallback(
     async (data) => {
       const { email: accepterEmail, ans } = data;
-      console.log("✅ Call accepted by", accepterEmail);
+              console.log("Call accepted by", accepterEmail);
       try {
         await setRemoteAnswer(ans);
         setActiveCalls((prev) => [...prev, accepterEmail]);
@@ -185,7 +185,7 @@ export default function Room() {
         setCallStatus("in-call");
         setRemoteEmailId(accepterEmail);
       } catch (error) {
-        console.error("❌ Error handling call acceptance:", error);
+        console.error("Error handling call acceptance:", error);
       }
     },
     [setRemoteAnswer]
@@ -195,7 +195,7 @@ export default function Room() {
   const handleCallRejected = useCallback(
     (data) => {
       const { email: rejecterEmail } = data;
-      console.log("❌ Call rejected by", rejecterEmail);
+              console.log("Call rejected by", rejecterEmail);
       setOutgoingCalls((prev) =>
         prev.filter((email) => email !== rejecterEmail)
       );
@@ -229,7 +229,7 @@ export default function Room() {
   const handleCallEnded = useCallback(
     (data) => {
       const { email } = data;
-      console.log("📴 Call ended with", email);
+      console.log("Call ended with", email);
       setActiveCalls((prev) =>
         prev.filter((activeEmail) => activeEmail !== email)
       );
@@ -249,7 +249,7 @@ export default function Room() {
       if (activeCalls.length <= 1) {
         setCallStatus("idle");
       }
-      console.log("📴 Ended call with", targetEmail);
+      console.log("Ended call with", targetEmail);
     },
     [socket, activeCalls.length]
   );
@@ -257,7 +257,7 @@ export default function Room() {
   // Handle user disconnection
   const handleUserDisconnected = useCallback((data) => {
     const { email } = data;
-    console.log("👋 User disconnected:", email);
+    console.log("User disconnected:", email);
     setExistingUsers((prev) => prev.filter((u) => u !== email));
     setIncomingCalls((prev) => prev.filter((call) => call.email !== email));
     setOutgoingCalls((prev) => prev.filter((u) => u !== email));
@@ -319,14 +319,14 @@ export default function Room() {
 
     try {
       setIsNegotiating(true);
-      console.log("🔄 Starting re-negotiation with", remoteEmailId);
+      console.log("Starting re-negotiation with", remoteEmailId);
 
       const offer = await createOffer();
       socket.emit("renegotiation-offer", { email: remoteEmailId, offer });
 
-      console.log("📤 Re-negotiation offer sent to", remoteEmailId);
+      console.log("Re-negotiation offer sent to", remoteEmailId);
     } catch (error) {
-      console.error("❌ Error during re-negotiation:", error);
+      console.error("Error during re-negotiation:", error);
       setIsNegotiating(false);
     }
   }, [peer, remoteEmailId, socket, createOffer, isNegotiating]);
@@ -354,7 +354,7 @@ export default function Room() {
   // Auto-send stream when call becomes active
   useEffect(() => {
     if (activeCalls.length > 0 && myStream && !remoteStream) {
-      console.log("🎥 Auto-sending stream to active call");
+      console.log("Auto-sending stream to active call");
       sendStream(myStream);
     }
   }, [activeCalls, myStream, remoteStream, sendStream]);

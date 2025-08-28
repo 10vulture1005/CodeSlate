@@ -119,7 +119,13 @@ export default function Lobby() {
         name += userEmail[i];
       }
 
-      setEmail(name); 
+      setEmail(name);
+      
+      // Set up user for call history
+      setUser({
+        id: auth.currentUser.uid,
+        email: userEmail
+      });
     } else {
       navigate('/');
     }
@@ -133,6 +139,8 @@ export default function Lobby() {
   const [room, setRoom] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
+  const [user, setUser] = useState(null);
+  const [showCallHistory, setShowCallHistory] = useState(false);
 
   useEffect(() => {
     // Mock socket listener

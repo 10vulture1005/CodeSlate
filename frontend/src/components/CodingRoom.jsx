@@ -156,7 +156,7 @@ async function createSubmission() {
       fields: "*",
     },
     headers: {
-      "x-rapidapi-key": import.meta.env.JUDGE0_KEY,
+      "x-rapidapi-key": `${import.meta.env.VITE_JUDGE0_KEY}`,
       "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
       "Content-Type": "application/json",
     },

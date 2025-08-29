@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"; // Import axios for HTTP requests
 import { useDisclosure } from "@heroui/react";
-import ForgetPasswordModel from "./ForgetPasswordModel"; // Import the Forget Password model component
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
@@ -42,9 +41,7 @@ export default function Login() {
   const handleLoginClick = () => {
     setIsActive(false);
   };
-  const forgetpassword = () => {
-    onOpen();
-  };
+
     const handleGoogleSignin = () => {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
@@ -394,19 +391,7 @@ export default function Login() {
                 outline: "none",
               }}
             />
-            <a
-              href="#"
-              onClick={() => forgetpassword()}
-              style={{
-                color: "#333",
 
-                fontSize: "13px",
-                textDecoration: "none",
-                margin: "15px 0 10px",
-              }}
-            >
-              Forget Your Password?
-            </a>
             <button
               type="button"
               onClick={handleSubmitSignIn}
@@ -592,7 +577,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <ForgetPasswordModel isOpen={isOpen} onClose={onClose} />
     </div>
   );
 }

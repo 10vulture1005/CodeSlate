@@ -78,7 +78,7 @@ export default function Login() {
           const user = userCredential.user;
           handleLoginClick();
           try {
-            const response = axios.post(`${import.meta.env.VITE_SOCKET_URL}/users/`, {
+            const response = axios.post(`${import.meta.env.VITE_SOCKET_URL}users/`, {
               uid: user.uid,
               email: user.email, 
             });
@@ -92,9 +92,8 @@ export default function Login() {
             alert("Registration successful, but there was an issue saving user data");
           }
         
-          alert("registration suckcesfhool");
+          alert("registration success");
 
-          // ...
         })
         .catch((error) => {
   
@@ -119,7 +118,6 @@ export default function Login() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         alert("login successful");
         navigate("/lobby");

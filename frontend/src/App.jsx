@@ -44,13 +44,7 @@ function App() {
     </Routes>
       </PeerProvider>
     </SocketProvider>
-    // dsfdf
 
-    //             <LiveblocksProvider largeMessageStrategy="compress" publicApiKey={"pk_dev_SpepY-uxjS7Syo3yXOH3x8XInM-nPmuWvQ7Rndxdz-sXD50b-hyfnhGB7h1cBieS"}>
-    //    <RoomProvider id="my-room">
-    //      <CodingRoom />
-    //    </RoomProvider>
-    // </LiveblocksProvider> 
   );
 }
 

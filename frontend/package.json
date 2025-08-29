@@ -20,7 +20,7 @@
     "@monaco-editor/react": "^4.7.0",
     "@splinetool/react-spline": "^4.0.0",
     "@splinetool/runtime": "^1.10.13",
-    "axios": "^1.10.0",
+    "axios": "^1.11.0",
     "base-64": "^1.0.0",
     "firebase": "^11.9.1",
     "framer-motion": "^12.18.1",

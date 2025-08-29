@@ -53,6 +53,7 @@ export default function Login() {
         .then((result) => {
           const user = result.user;
           console.log("Google Sign-In successful:", user);
+          
           navigate('/lobby')
         })
         .catch((error) => {
@@ -76,14 +77,27 @@ export default function Login() {
           // Signed up
           const user = userCredential.user;
           handleLoginClick();
+          try {
+            const response = axios.post(`${import.meta.env.VITE_SOCKET_URL}/users/`, {
+              uid: user.uid,
+              email: user.email, 
+            });
+            
+            console.log('User saved to database:', response.data);
+            handleLoginClick();
+            alert("Registration successful!");
+            
+          } catch (error) {
+            console.error('Error saving user to database:', error);
+            alert("Registration successful, but there was an issue saving user data");
+          }
+        
           alert("registration suckcesfhool");
 
           // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
+  
           console.log(error);
         });
     } else {
@@ -107,13 +121,12 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        alert("login sucksesfhool");
+        alert("login successful");
         navigate("/lobby");
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+
         console.log(error);
       });
 

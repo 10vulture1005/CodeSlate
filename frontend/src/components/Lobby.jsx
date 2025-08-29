@@ -5,8 +5,7 @@ import { useSocket } from "../providers/Sockets";
 import { useNavigate } from "react-router-dom";
 import { Shuffle, Users, Mail, Lock, Sparkles, Globe, History } from "lucide-react";
 import { getAuth } from "firebase/auth";
-import CallHistory from "./CallHistory.jsx";
-import apiService from "../services/api.js";
+
 
 // Mock components for demo
 const Input = ({ value, onChange, label, type, placeholder, classNames, startContent, endContent, className, ...props }) => (

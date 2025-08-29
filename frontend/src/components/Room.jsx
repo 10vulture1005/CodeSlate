@@ -50,7 +50,6 @@ export default function Room() {
   const [isAudioEnabled, setIsAudioEnabled] = useState(true);
   const [isNegotiating, setIsNegotiating] = useState(false);
 
-  // Handle new user joining (existing users receive this)
   const handleNewUser = useCallback(async (data) => {
     const { email } = data;
     console.log(`New user joined: ${email}`);
@@ -58,14 +57,12 @@ export default function Room() {
     setExistingUsers((prev) => [...prev.filter((u) => u !== email), email]);
   }, []);
 
-  // Handle existing users list (new user receives this)
   const handleExistingUsers = useCallback(async (data) => {
     const { users } = data;
     console.log("Received existing users:", users);
     setExistingUsers(users);
   }, []);
 
-  // Handle incoming call
   const handleIncomingCall = useCallback(async (data) => {
     const { email: from, offer } = data;
     console.log("Incoming call from", from);
@@ -79,7 +76,6 @@ export default function Room() {
     setCallStatus("receiving");
   }, []);
 
-  // Handle re-negotiation offer during active call
   const handleRenegotiationOffer = useCallback(
     async (data) => {
       const { email: from, offer } = data;
@@ -98,7 +94,6 @@ export default function Room() {
     [activeCalls, createAnswere, socket]
   );
 
-  // Handle re-negotiation answer
   const handleRenegotiationAnswer = useCallback(
     async (data) => {
       const { email: from, ans } = data;
@@ -116,7 +111,6 @@ export default function Room() {
     [setRemoteAnswer]
   );
 
-  // Accept a specific call
   const acceptCall = useCallback(
     async (callData) => {
       try {
@@ -136,7 +130,6 @@ export default function Room() {
     [createAnswere, socket]
   );
 
-  // Reject a specific call
   const rejectCall = useCallback(
     (callData) => {
       socket.emit("call-rejected", { email: callData.email });
@@ -151,7 +144,6 @@ export default function Room() {
     [socket, incomingCalls.length]
   );
 
-  // Initiate call to a user
   const callUser = useCallback(
     async (targetEmail) => {
       try {
@@ -171,7 +163,6 @@ export default function Room() {
     [createOffer, socket]
   );
 
-  // Handle call accepted
   const handleCallAccepted = useCallback(
     async (data) => {
       const { email: accepterEmail, ans } = data;
@@ -191,7 +182,6 @@ export default function Room() {
     [setRemoteAnswer]
   );
 
-  // Handle call rejected
   const handleCallRejected = useCallback(
     (data) => {
       const { email: rejecterEmail } = data;
@@ -206,7 +196,6 @@ export default function Room() {
     [outgoingCalls.length]
   );
 
-  // Handle call timeout
   const handleCallTimeout = useCallback(
     (data) => {
       const { targetEmail, email } = data;
@@ -225,7 +214,6 @@ export default function Room() {
     [outgoingCalls.length, incomingCalls.length]
   );
 
-  // Handle call ended
   const handleCallEnded = useCallback(
     (data) => {
       const { email } = data;
@@ -240,7 +228,6 @@ export default function Room() {
     [activeCalls.length]
   );
 
-  // End call
   const endCall = useCallback(
     (targetEmail) => {
       socket.emit("end-call", { email: targetEmail });
@@ -254,7 +241,6 @@ export default function Room() {
     [socket, activeCalls.length]
   );
 
-  // Handle user disconnection
   const handleUserDisconnected = useCallback((data) => {
     const { email } = data;
     console.log("User disconnected:", email);
@@ -264,7 +250,6 @@ export default function Room() {
     setActiveCalls((prev) => prev.filter((u) => u !== email));
   }, []);
 
-  // Socket event listeners
   useEffect(() => {
     if (!socket) return;
 
@@ -313,7 +298,6 @@ export default function Room() {
     setMystream(stream);
   }, []);
 
-  // Fixed negotiation handler
   const handleNegotiation = useCallback(async () => {
     if (!peer || !remoteEmailId || isNegotiating) return;
 
@@ -351,7 +335,6 @@ export default function Room() {
     }
   };
 
-  // Auto-send stream when call becomes active
   useEffect(() => {
     if (activeCalls.length > 0 && myStream && !remoteStream) {
       console.log("Auto-sending stream to active call");

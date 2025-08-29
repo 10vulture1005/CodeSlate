@@ -17,21 +17,7 @@ export default function ForgetPasswordModel({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     setSuccess(true);
-    // e.preventDefault();
-    // const email = document.getElementById('email').value;
-    // if (!email) {
-    //   alert('Please enter your email address');
-    //   return;
-    // }
-    // axios.post('http://localhost:8080/forgot-password', { email })
-    //   .then(response => {
-    //     console.log('Password reset email sent:', response.data);
-    //     alert('Password reset email sent! Please check your inbox.');
-    //   })
-    //   .catch(error => {
-    //     console.error('There was an error sending the email!', error);
-    //     alert('An error occurred. Please try again later.');
-    //   });
+
   };
 
   return (

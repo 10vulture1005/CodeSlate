@@ -362,10 +362,7 @@ export default function CodeEditor({ lang, langid, code, setCode }) {
 
   return (
     <div style={{ height: "90%", width: "100%" }}>
-      {/* Only render cursors when provider is ready and not disposed */}
-      {/* {yProviderRef.current && !isDisposedRef.current && (
-        <Cursors yProvider={yProviderRef.current} />
-      )} */}
+
       
       <Editor
         height="90%"

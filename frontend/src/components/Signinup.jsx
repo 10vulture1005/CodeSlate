@@ -225,20 +225,7 @@ export default function Login() {
               
                 <i className="fa-brands fa-google-plus-g"></i>
               
-              {/* <a href="#" className="icon" style={{
-                border: '1px solid #ccc',
-                borderRadius: '20%',
-                display: 'inline-flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: '0 3px',
-                width: '40px',
-                height: '40px',
-                color: '#333',
-                textDecoration: 'none'
-              }}>
-                <i className="fa-brands fa-facebook-f"></i>
-              </a> */}
+              
             </div>
             <span
               style={{ fontSize: "12px", margin: "10px 0", color: "black" }}
@@ -246,18 +233,7 @@ export default function Login() {
               or use your email for registration
             </span>
 
-            {/* <input id="name" type="text" placeholder="Username" style={{
-              backgroundColor: '#eee',
-              onclick: () => document.getElementById('name').focus(),
-              border: 'none',
-              margin: '8px 0',
-              padding: '10px 15px',
-              color: '#000',
-              fontSize: '13px',
-              borderRadius: '8px',
-              width: '100%',
-              outline: 'none'
-            }} /> */}
+
             <input
               id="reg-email"
               type="email"
@@ -380,20 +356,7 @@ export default function Login() {
                 >
               
                 <i className="fa-brands fa-google-plus-g"></i>
-              {/* <a href="#" className="icon" style={{
-                border: '1px solid #ccc',
-                borderRadius: '20%',
-                display: 'inline-flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: '0 3px',
-                width: '40px',
-                height: '40px',
-                color: '#333',
-                textDecoration: 'none'
-              }}>
-                <i className="fa-brands fa-facebook-f"></i>
-              </a> */}
+
             </div>
 
             <span style={{ fontSize: "12px", margin: "10px 0", color: "#000" }}>

@@ -53,7 +53,6 @@ export const PeerProvider=(props)=>{
     }
     const setRemoteAnswer = async (ans)=>{
       try {
-        // Validate the answer object before setting it
         if (!ans || typeof ans !== 'object') {
           throw new Error('Answer is not a valid object');
         }
@@ -78,7 +77,7 @@ export const PeerProvider=(props)=>{
 const [tracksAdded, setTracksAdded] = useState(false);
 
 const sendStream = async (stream) => {
-  if (tracksAdded) return; // ✅ Prevent adding again
+  if (tracksAdded) return; 
 
   const tracks = stream.getTracks();
   for (const track of tracks) {

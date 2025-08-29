@@ -73,12 +73,7 @@ export default function Home() {
             </span>
           </div>
           
-          {/* <div className="hidden md:flex space-x-8 text-white/80">
-            <a href="#" className="hover:text-white transition-colors duration-200">Home</a>
-            <a href="#" className="hover:text-white transition-colors duration-200">About</a>
-            <a href="#" className="hover:text-white transition-colors duration-200">Services</a>
-            <a href="#" className="hover:text-white transition-colors duration-200">Contact</a>
-          </div> */}
+   
           
           <button className="md:hidden text-white">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

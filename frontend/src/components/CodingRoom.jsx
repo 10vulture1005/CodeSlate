@@ -231,9 +231,7 @@ async function createSubmission() {
       updateOutput(`Error fetching result: ${error.response?.data?.error || error.message}`);
     }
   }
-const handleInputChange = (e) => {
-  updateInput(e.target.value);
-};
+
 
   const runCode = () => {
     if (selectedLanguage === 102) {
